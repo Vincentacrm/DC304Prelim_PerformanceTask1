@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -15,37 +16,61 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Vincent Ace Racoma | Personal Site",
-  description: "A personal site built with Next.js",
+  description: "BS Information Technology Student",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-screen flex flex-col bg-white text-gray-900">
 
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <nav className="border-b border-gray-200 bg-white">
+        {/* Navigation Bar */}
+        <nav className="w-full border-b border-gray-200 bg-white">
           <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-5">
 
-            <Link href="/" className="text-xl font-bold">
+            <Link
+              href="/"
+              className="text-xl font-bold text-gray-900 hover:text-blue-600"
+            >
               Vincent Ace
             </Link>
 
-            <div className="flex gap-6 text-sm font-medium">
-              <Link href="/">Home</Link>
-              <Link href="/about">About</Link>
-              <Link href="/projects">Projects</Link>
+            <div className="flex items-center gap-6 text-sm font-medium">
+              <Link
+                href="/"
+                className="text-gray-700 transition-colors hover:text-blue-600"
+              >
+                Home
+              </Link>
+
+              <Link
+                href="/about"
+                className="text-gray-700 transition-colors hover:text-blue-600"
+              >
+                About
+              </Link>
+
+              <Link
+                href="/projects"
+                className="text-gray-700 transition-colors hover:text-blue-600"
+              >
+                Projects
+              </Link>
             </div>
 
           </div>
         </nav>
-
-        {children}
+        <main className="flex-1">
+          {children}
+        </main>
       </body>
-
     </html>
   );
 }
